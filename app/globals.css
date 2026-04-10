@@ -1,0 +1,277 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #000000;
+  --foreground: #fafafa;
+  --muted: #a1a1aa;
+  --border: rgba(255, 255, 255, 0.08);
+  --accent-purple: #a855f7;
+  --accent-violet: #8b5cf6;
+  --glow-purple: rgba(168, 85, 247, 0.45);
+  --glow-violet: rgba(139, 92, 246, 0.35);
+}
+
+html {
+  /* Lenis handles smooth scroll; native smooth conflicts with inertia */
+  scroll-behavior: auto;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(168, 85, 247, 0.28);
+  color: #fafafa;
+}
+
+/* Hero background blobs — purple / violet */
+@keyframes blobFloat {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(42px, -26px, 0) scale(1.06);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.hero-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(64px);
+  opacity: 0.85;
+  animation: blobFloat 18s ease-in-out infinite;
+}
+
+.hero-blob.one {
+  width: 36rem;
+  height: 36rem;
+  background: radial-gradient(
+    circle at 35% 35%,
+    rgba(168, 85, 247, 0.24) 0%,
+    rgba(139, 92, 246, 0.1) 38%,
+    transparent 65%
+  );
+  top: -18rem;
+  left: -14rem;
+  animation-delay: -2s;
+}
+
+.hero-blob.two {
+  width: 32rem;
+  height: 32rem;
+  background: radial-gradient(
+    circle at 40% 40%,
+    rgba(192, 132, 252, 0.14) 0%,
+    rgba(168, 85, 247, 0.08) 42%,
+    transparent 68%
+  );
+  top: -12rem;
+  right: -12rem;
+  animation-delay: -7s;
+}
+
+.hero-blob.three {
+  width: 28rem;
+  height: 28rem;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(139, 92, 246, 0.14) 0%,
+    transparent 62%
+  );
+  bottom: -12rem;
+  left: 20%;
+  animation-delay: -11s;
+}
+
+/* Hero central rings */
+@keyframes heroRingOuter {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}
+
+@keyframes heroRingInner {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.hero-ring-layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.hero-ring-outer,
+.hero-ring-inner {
+  border-radius: 9999px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(180, 165, 255, 0.18);
+  box-shadow: 0 0 40px rgba(129, 140, 248, 0.25);
+  mix-blend-mode: screen;
+}
+
+.hero-ring-outer {
+  width: min(46rem, 82vw);
+  height: min(46rem, 82vw);
+  animation: heroRingOuter 55s linear infinite;
+  opacity: 0.5;
+}
+
+.hero-ring-inner {
+  width: min(32rem, 64vw);
+  height: min(32rem, 64vw);
+  border-color: rgba(199, 210, 254, 0.42);
+  box-shadow:
+    0 0 60px rgba(147, 197, 253, 0.4),
+    0 0 90px rgba(167, 139, 250, 0.3);
+  animation: heroRingInner 40s linear infinite;
+  opacity: 0.7;
+}
+
+/* Premium card surface */
+.card-surface {
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(8px);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.02) inset,
+    0 1px 0 0 rgba(255, 255, 255, 0.04) inset;
+}
+
+.card-surface-hover {
+  transition:
+    border-color 300ms ease,
+    box-shadow 300ms ease,
+    transform 300ms ease;
+}
+
+.card-surface-hover:hover {
+  border-color: rgba(168, 85, 247, 0.28);
+  box-shadow:
+    0 0 0 1px rgba(168, 85, 247, 0.1) inset,
+    0 0 48px -12px rgba(168, 85, 247, 0.28),
+    0 20px 40px -28px rgba(0, 0, 0, 0.55);
+  transform: translateY(-2px);
+}
+
+/* Primary CTA glow */
+.btn-primary-glow {
+  box-shadow:
+    0 0 24px -4px rgba(168, 85, 247, 0.4),
+    0 0 0 1px rgba(168, 85, 247, 0.22) inset;
+}
+
+.btn-primary-glow:hover {
+  box-shadow:
+    0 0 32px -4px rgba(168, 85, 247, 0.55),
+    0 0 0 1px rgba(168, 85, 247, 0.38) inset;
+}
+
+/* Hero CTA — subtle gradient + soft glow */
+.hero-cta {
+  background: linear-gradient(
+    135deg,
+    rgba(124, 92, 220, 0.95) 0%,
+    rgba(109, 76, 200, 0.9) 45%,
+    rgba(91, 63, 180, 0.92) 100%
+  );
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.07) inset,
+    0 1px 0 0 rgba(255, 255, 255, 0.1) inset,
+    0 0 32px -10px rgba(139, 92, 246, 0.42);
+  transition:
+    box-shadow 400ms ease,
+    transform 400ms ease,
+    filter 400ms ease;
+  min-height: 2.75rem;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hero-cta:hover {
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.12) inset,
+      0 0 44px -6px rgba(167, 139, 250, 0.52);
+    transform: translateY(-1px);
+    filter: brightness(1.07);
+  }
+}
+
+.section-shell {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 80rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .section-shell {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-shell {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Hero h1 line 2 — same 135° axis as .hero-cta, lighter stops for legibility on dark */
+.hero-headline-punchline {
+  background-image: linear-gradient(
+    135deg,
+    rgb(216 195 255) 0%,
+    rgb(183 148 246) 45%,
+    rgb(124 92 220) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Trusted-by marquee — slow linear infinite scroll */
+@keyframes trust-marquee-scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.trust-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: trust-marquee-scroll 26s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trust-marquee-track {
+    animation: none;
+    transform: translate3d(0, 0, 0);
+  }
+}
