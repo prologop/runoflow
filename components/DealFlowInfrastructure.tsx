@@ -108,8 +108,8 @@ export default function DealFlowInfrastructure() {
 
           <Reveal delayMs={100}>
             <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-gray-400 md:mt-8 md:text-lg md:leading-relaxed">
-              RunoFlow transforms fragmented demand and supply into a structured,
-              high-quality flow of opportunities — routed with precision.
+              RunoFlow transforms fragmented signals into a structured flow of
+              high-quality opportunities — routed with precision.
             </p>
           </Reveal>
         </div>
